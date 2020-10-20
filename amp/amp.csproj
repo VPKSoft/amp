@@ -350,7 +350,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetZip" Version="1.14.0" />
     <PackageReference Include="FftSharp" Version="1.0.7" />
-    <PackageReference Include="Fody" Version="6.2.6">
+    <PackageReference Include="Fody" Version="6.3.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="NAudio.Flac" Version="1.0.5702.29018" />
