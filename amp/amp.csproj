@@ -351,7 +351,7 @@
     <PackageReference Include="System.Memory" Version="4.5.4" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="5.0.0" />
     <PackageReference Include="taglib" Version="2.1.0" />
-    <PackageReference Include="VPKSoft.AudioVisualization" Version="1.0.6" />
+    <PackageReference Include="VPKSoft.AudioVisualization" Version="1.0.7" />
     <PackageReference Include="VPKSoft.ErrorLogger" Version="1.0.0.6" />
     <PackageReference Include="VPKSoft.LangLib" Version="1.0.7" />
     <PackageReference Include="VPKSoft.PosLib" Version="1.0.1.1" />
