@@ -29,66 +29,65 @@ using System.Windows.Forms;
 using amp.UtilityClasses;
 using VPKSoft.LangLib;
 
-namespace amp.FormsUtility.Songs
+namespace amp.FormsUtility.Songs;
+
+/// <summary>
+/// A dialog to rename a song internally; No changes to the file system is done.
+/// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+/// </summary>
+/// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+public partial class FormRename : DBLangEngineWinforms
 {
     /// <summary>
-    /// A dialog to rename a song internally; No changes to the file system is done.
-    /// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+    /// Initializes a new instance of the <see cref="FormRename"/> class.
     /// </summary>
-    /// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
-    public partial class FormRename : DBLangEngineWinforms
+    public FormRename()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FormRename"/> class.
-        /// </summary>
-        public FormRename()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            // ReSharper disable once StringLiteralTypo
-            DBLangEngine.DBName = "lang.sqlite";
-            if (Utils.ShouldLocalize() != null)
-            {
-                DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
-                return; // After localization don't do anything more.
-            }
-            DBLangEngine.InitializeLanguage("amp.Messages");
+        // ReSharper disable once StringLiteralTypo
+        DBLangEngine.DBName = "lang.sqlite";
+        if (Utils.ShouldLocalize() != null)
+        {
+            DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
+            return; // After localization don't do anything more.
+        }
+        DBLangEngine.InitializeLanguage("amp.Messages");
+    }
+
+    // a value for a previous name of the song, so a change can be detected..
+    string lastName = string.Empty;
+
+    // enable/disable the OK button depending on the validity of the new name text box value..
+    private void tbNewSongName_TextChanged(object sender, EventArgs e)
+    {
+        bOK.Enabled = tbNewSongName.Text.Trim() != string.Empty && tbNewSongName.Text != lastName;
+    }
+
+    /// <summary>
+    /// Displays the dialog querying a new name for a song.
+    /// </summary>
+    /// <param name="mf">The <see cref="MusicFile"/> class instance of which name to change.</param>
+    /// <returns>A <see cref="string"/> value for a new name for the music file if the user accepted the dialog; otherwise <see cref="string.Empty"/>.</returns>
+    public static string Execute(MusicFile mf)
+    {
+        FormRename rename = new FormRename
+        {
+            tbNewSongName = {Text = mf.ToString(false)}, lastName = mf.ToString(false)
+        };
+        if (rename.ShowDialog() == DialogResult.OK)
+        {
+            return rename.tbNewSongName.Text;
         }
 
-        // a value for a previous name of the song, so a change can be detected..
-        string lastName = string.Empty;
+        return string.Empty;
+    }
 
-        // enable/disable the OK button depending on the validity of the new name text box value..
-        private void tbNewSongName_TextChanged(object sender, EventArgs e)
-        {
-            bOK.Enabled = tbNewSongName.Text.Trim() != string.Empty && tbNewSongName.Text != lastName;
-        }
-
-        /// <summary>
-        /// Displays the dialog querying a new name for a song.
-        /// </summary>
-        /// <param name="mf">The <see cref="MusicFile"/> class instance of which name to change.</param>
-        /// <returns>A <see cref="string"/> value for a new name for the music file if the user accepted the dialog; otherwise <see cref="string.Empty"/>.</returns>
-        public static string Execute(MusicFile mf)
-        {
-            FormRename rename = new FormRename
-            {
-                tbNewSongName = {Text = mf.ToString(false)}, lastName = mf.ToString(false)
-            };
-            if (rename.ShowDialog() == DialogResult.OK)
-            {
-                return rename.tbNewSongName.Text;
-            }
-
-            return string.Empty;
-        }
-
-        // the dialog form is shown; focus and select all from the name text box..
-        private void frmRename_Shown(object sender, EventArgs e)
-        {
-            bOK.Enabled = false;
-            tbNewSongName.SelectAll();
-            tbNewSongName.Focus();
-        }
+    // the dialog form is shown; focus and select all from the name text box..
+    private void frmRename_Shown(object sender, EventArgs e)
+    {
+        bOK.Enabled = false;
+        tbNewSongName.SelectAll();
+        tbNewSongName.Focus();
     }
 }

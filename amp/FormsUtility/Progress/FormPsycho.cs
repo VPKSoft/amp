@@ -27,75 +27,74 @@ SOFTWARE.
 using System.Windows.Forms;
 using VPKSoft.LangLib;
 
-namespace amp.FormsUtility.Progress
+namespace amp.FormsUtility.Progress;
+
+/// <summary>
+/// A form the report progress to the user.
+/// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+/// </summary>
+/// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+public partial class FormPsycho : DBLangEngineWinforms
 {
     /// <summary>
-    /// A form the report progress to the user.
-    /// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+    /// A field to hold a current instance of the form.
     /// </summary>
-    /// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
-    public partial class FormPsycho : DBLangEngineWinforms
+    private static FormPsycho formPsycho;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="FormPsycho"/> class.
+    /// </summary>
+    public FormPsycho()
     {
-        /// <summary>
-        /// A field to hold a current instance of the form.
-        /// </summary>
-        private static FormPsycho formPsycho;
+        InitializeComponent();
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FormPsycho"/> class.
-        /// </summary>
-        public FormPsycho()
+        // ReSharper disable once StringLiteralTypo
+        DBLangEngine.DBName = "lang.sqlite";
+        if (Utils.ShouldLocalize() != null)
         {
-            InitializeComponent();
-
-            // ReSharper disable once StringLiteralTypo
-            DBLangEngine.DBName = "lang.sqlite";
-            if (Utils.ShouldLocalize() != null)
-            {
-                DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
-                return; // After localization don't do anything more.
-            }
-
-            DBLangEngine.InitializeLanguage("amp.Messages");
+            DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
+            return; // After localization don't do anything more.
         }
 
-        /// <summary>
-        /// Displays the form and aligns it to the center of the <paramref name="form"/>.
-        /// </summary>
-        /// <param name="form">The form .</param>
-        public static void Execute(Form form)
-        {
-            if (formPsycho != null)
-            {
-                return;
-            }
-            formPsycho = new FormPsycho();
-            formPsycho.Left = form.Left + (form.Width - formPsycho.Width) / 2;
-            formPsycho.Top = form.Top + (form.Height - formPsycho.Height) / 2;
-            formPsycho.Show();
-            formPsycho.Refresh();
-        }
+        DBLangEngine.InitializeLanguage("amp.Messages");
+    }
 
-        /// <summary>
-        /// Sets the status text for the instance of this form.
-        /// </summary>
-        /// <param name="text">The text to display.</param>
-        public static void SetStatusText(string text)
+    /// <summary>
+    /// Displays the form and aligns it to the center of the <paramref name="form"/>.
+    /// </summary>
+    /// <param name="form">The form .</param>
+    public static void Execute(Form form)
+    {
+        if (formPsycho != null)
         {
-            if (formPsycho != null)
-            {
-                formPsycho.lbStatus.Text = text;
-                formPsycho.lbStatus.Refresh();
-            }            
+            return;
         }
+        formPsycho = new FormPsycho();
+        formPsycho.Left = form.Left + (form.Width - formPsycho.Width) / 2;
+        formPsycho.Top = form.Top + (form.Height - formPsycho.Height) / 2;
+        formPsycho.Show();
+        formPsycho.Refresh();
+    }
 
-        /// <summary>
-        /// Closes an instance of this form a and sets it to null.
-        /// </summary>
-        public static void UnExecute()
+    /// <summary>
+    /// Sets the status text for the instance of this form.
+    /// </summary>
+    /// <param name="text">The text to display.</param>
+    public static void SetStatusText(string text)
+    {
+        if (formPsycho != null)
         {
-            formPsycho.Close();
-            formPsycho = null;
-        }
+            formPsycho.lbStatus.Text = text;
+            formPsycho.lbStatus.Refresh();
+        }            
+    }
+
+    /// <summary>
+    /// Closes an instance of this form a and sets it to null.
+    /// </summary>
+    public static void UnExecute()
+    {
+        formPsycho.Close();
+        formPsycho = null;
     }
 }
