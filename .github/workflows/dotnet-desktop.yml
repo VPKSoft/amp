@@ -2,24 +2,10 @@ name: .NET Desktop
 
 on:
   push:
-    branches: [ master ]
-    paths-ignore:
-      - 'amp.Database/**'
-      - 'amp.EtoForms/**'
-      - 'amp.Playback/**'
-      - 'amp.Shared/**'
-      - 'amp.Tests/**'
-      - 'EtoForms.Controls.Custom/**'    
+    branches: [ master-winforms ]
     
   pull_request:
-    branches: [ master ]
-    paths-ignore:
-      - 'amp.Database/**'
-      - 'amp.EtoForms/**'
-      - 'amp.Playback/**'
-      - 'amp.Shared/**'
-      - 'amp.Tests/**'
-      - 'EtoForms.Controls.Custom/**'    
+    branches: [ master-winforms ]
 
 jobs:
 
