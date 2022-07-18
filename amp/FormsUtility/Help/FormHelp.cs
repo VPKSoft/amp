@@ -28,86 +28,85 @@ using System.Windows.Forms;
 using VPKSoft.LangLib;
 using VPKSoft.PosLib;
 
-namespace amp.FormsUtility.Help
+namespace amp.FormsUtility.Help;
+
+/// <summary>
+/// A form displaying a small help for the software.
+/// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+/// </summary>
+/// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+public partial class FormHelp : DBLangEngineWinforms
 {
     /// <summary>
-    /// A form displaying a small help for the software.
-    /// Implements the <see cref="VPKSoft.LangLib.DBLangEngineWinforms" />
+    /// Initializes a new instance of the <see cref="FormHelp"/> class.
     /// </summary>
-    /// <seealso cref="VPKSoft.LangLib.DBLangEngineWinforms" />
-    public partial class FormHelp : DBLangEngineWinforms
+    public FormHelp()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FormHelp"/> class.
-        /// </summary>
-        public FormHelp()
+        // Add this form to be positioned..
+        PositionForms.Add(this);
+
+        InitializeComponent();
+
+        // ReSharper disable once StringLiteralTypo
+        DBLangEngine.DBName = "lang.sqlite";
+        if (Utils.ShouldLocalize() != null)
         {
-            // Add this form to be positioned..
-            PositionForms.Add(this);
-
-            InitializeComponent();
-
-            // ReSharper disable once StringLiteralTypo
-            DBLangEngine.DBName = "lang.sqlite";
-            if (Utils.ShouldLocalize() != null)
-            {
-                DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
-                return; // After localization don't do anything more.
-            }
-            DBLangEngine.InitializeLanguage("amp.Messages");
+            DBLangEngine.InitializeLanguage("amp.Messages", Utils.ShouldLocalize(), false);
+            return; // After localization don't do anything more.
         }
+        DBLangEngine.InitializeLanguage("amp.Messages");
+    }
 
-        /// <summary>
-        /// The form is used as a singleton because of the amount of resources the images take.
-        /// </summary>
-        private static FormHelp thisSingleton;
+    /// <summary>
+    /// The form is used as a singleton because of the amount of resources the images take.
+    /// </summary>
+    private static FormHelp thisSingleton;
 
-        /// <summary>
-        /// A flag indicating whether the singleton instance is allowed to be disposed of.
-        /// </summary>
-        private static bool allowDisposal;
+    /// <summary>
+    /// A flag indicating whether the singleton instance is allowed to be disposed of.
+    /// </summary>
+    private static bool allowDisposal;
 
-        /// <summary>
-        /// Shows the singleton instance of this form.
-        /// </summary>
-        public static void ShowSingleton()
+    /// <summary>
+    /// Shows the singleton instance of this form.
+    /// </summary>
+    public static void ShowSingleton()
+    {
+        if (thisSingleton == null)
         {
-            if (thisSingleton == null)
+            thisSingleton = new FormHelp();
+            thisSingleton.Show();
+        }
+        else
+        {
+            if (!thisSingleton.Visible)
             {
-                thisSingleton = new FormHelp();
                 thisSingleton.Show();
             }
-            else
-            {
-                if (!thisSingleton.Visible)
-                {
-                    thisSingleton.Show();
-                }
-                thisSingleton.BringToFront();
-            }
+            thisSingleton.BringToFront();
         }
+    }
 
-        // the form is closing..
-        private void FormHelp_FormClosing(object sender, FormClosingEventArgs e)
+    // the form is closing..
+    private void FormHelp_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        if (!allowDisposal)
         {
-            if (!allowDisposal)
-            {
-                e.Cancel = true; // prevent the disposing of the form..
-                Hide(); // ..so do hide.. :-)
-            }
+            e.Cancel = true; // prevent the disposing of the form..
+            Hide(); // ..so do hide.. :-)
         }
+    }
 
-        /// <summary>
-        /// Disposes the singleton instance of this form.
-        /// </summary>
-        public static void DisposeSingleton()
+    /// <summary>
+    /// Disposes the singleton instance of this form.
+    /// </summary>
+    public static void DisposeSingleton()
+    {
+        allowDisposal = true;
+        if (thisSingleton != null)
         {
-            allowDisposal = true;
-            if (thisSingleton != null)
-            {
-                thisSingleton.Close();
-                thisSingleton = null;
-            }
+            thisSingleton.Close();
+            thisSingleton = null;
         }
     }
 }

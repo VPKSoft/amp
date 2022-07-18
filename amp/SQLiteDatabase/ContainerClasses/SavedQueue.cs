@@ -28,47 +28,46 @@ using System;
 using System.Collections.Generic;
 using amp.UtilityClasses;
 
-namespace amp.SQLiteDatabase.ContainerClasses
+namespace amp.SQLiteDatabase.ContainerClasses;
+
+/// <summary>
+/// A class which represents a saved queue in the amp# database.
+/// </summary>
+public class SavedQueue
 {
     /// <summary>
-    /// A class which represents a saved queue in the amp# database.
+    /// Gets or sets the database identifier for the saved queue.
     /// </summary>
-    public class SavedQueue
-    {
-        /// <summary>
-        /// Gets or sets the database identifier for the saved queue.
-        /// </summary>
-        /// <value>The database identifier for the saved queue.</value>
-        public virtual int Id { get; set; }
+    /// <value>The database identifier for the saved queue.</value>
+    public virtual int Id { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the album the saved queue belongs to.
-        /// </summary>
-        /// <value>The name of the album the saved queue belongs to</value>
-        public virtual string AlbumName { get; set; }
+    /// <summary>
+    /// Gets or sets the name of the album the saved queue belongs to.
+    /// </summary>
+    /// <value>The name of the album the saved queue belongs to</value>
+    public virtual string AlbumName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the total count of the queues belonging to this <see cref="AlbumName"/> album.
-        /// </summary>
-        /// <value>The total count of the queues belonging to this <see cref="AlbumName"/> album.</value>
-        public virtual int CountTotal { get; set; }
+    /// <summary>
+    /// Gets or sets the total count of the queues belonging to this <see cref="AlbumName"/> album.
+    /// </summary>
+    /// <value>The total count of the queues belonging to this <see cref="AlbumName"/> album.</value>
+    public virtual int CountTotal { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the saved queue.
-        /// </summary>
-        /// <value>The name of the saved queue.</value>
-        public virtual string QueueName { get; set; }
+    /// <summary>
+    /// Gets or sets the name of the saved queue.
+    /// </summary>
+    /// <value>The name of the saved queue.</value>
+    public virtual string QueueName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the date and time of the saved queue.
-        /// </summary>
-        /// <value>The date and time of the saved queue.</value>
-        public virtual DateTime CreteDate { get; set; }
+    /// <summary>
+    /// Gets or sets the date and time of the saved queue.
+    /// </summary>
+    /// <value>The date and time of the saved queue.</value>
+    public virtual DateTime CreteDate { get; set; }
 
-        /// <summary>
-        /// Gets or sets the songs in the saved queue.
-        /// </summary>
-        /// <value>The  songs in the saved queue.</value>
-        public List<MusicFile> QueueSongs { get; set; }
-    }
+    /// <summary>
+    /// Gets or sets the songs in the saved queue.
+    /// </summary>
+    /// <value>The  songs in the saved queue.</value>
+    public List<MusicFile> QueueSongs { get; set; }
 }

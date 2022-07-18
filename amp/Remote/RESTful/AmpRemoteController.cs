@@ -30,45 +30,44 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace amp.Remote.RESTful
+namespace amp.Remote.RESTful;
+
+/// <summary>
+/// A remote REST API controller for the amp# software.
+/// Implements the <see cref="Controller" />
+/// </summary>
+/// <seealso cref="Controller" />
+public class AmpRemoteController
 {
     /// <summary>
-    /// A remote REST API controller for the amp# software.
-    /// Implements the <see cref="Controller" />
+    /// Initializes a new instance of the <see cref="AmpRemoteController"/> class.
     /// </summary>
-    /// <seealso cref="Controller" />
-    public class AmpRemoteController
+    /// <param name="baseUrl">The base URL.</param>
+    public static void CreateInstance(string baseUrl)
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AmpRemoteController"/> class.
-        /// </summary>
-        /// <param name="baseUrl">The base URL.</param>
-        public static void CreateInstance(string baseUrl)
-        {
-            InstanceContext?.Dispose();
+        InstanceContext?.Dispose();
 
-            WebHost.CreateDefaultBuilder()
-                .ConfigureServices(services => services.AddMvc(options => options.EnableEndpointRouting = false))
-                .Configure(app => app.UseMvc())
-                .UseUrls(baseUrl)
-                .Build()
-                .RunAsync();
-        }
-
-        /// <summary>
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources of the <see cref="InstanceContext"/> instance.
-        /// </summary>
-        /// </summary>
-        public static void Dispose()
-        {
-            InstanceContext?.Dispose();
-        }
-
-        /// <summary>
-        /// Gets or sets the instance context of this <see cref="AmpRemoteController"/> class.
-        /// </summary>
-        /// <value>The instance context of this <see cref="AmpRemoteController"/> class.</value>
-        public static IWebHost InstanceContext { get; set; }
+        WebHost.CreateDefaultBuilder()
+            .ConfigureServices(services => services.AddMvc(options => options.EnableEndpointRouting = false))
+            .Configure(app => app.UseMvc())
+            .UseUrls(baseUrl)
+            .Build()
+            .RunAsync();
     }
+
+    /// <summary>
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources of the <see cref="InstanceContext"/> instance.
+    /// </summary>
+    /// </summary>
+    public static void Dispose()
+    {
+        InstanceContext?.Dispose();
+    }
+
+    /// <summary>
+    /// Gets or sets the instance context of this <see cref="AmpRemoteController"/> class.
+    /// </summary>
+    /// <value>The instance context of this <see cref="AmpRemoteController"/> class.</value>
+    public static IWebHost InstanceContext { get; set; }
 }
