@@ -19,4 +19,4 @@ A multi-platform version, which is under development can be found at: [amp-multi
 * [![.NET Desktop](https://github.com/VPKSoft/amp/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/VPKSoft/amp/actions/workflows/dotnet-desktop.yml)
 
 
-![JetBrains](http://www.vpksoft.net/site/External/JetBrains/jetbrains.svg)
+![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)
