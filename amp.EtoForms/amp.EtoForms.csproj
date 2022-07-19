@@ -39,7 +39,7 @@
 		<PackageReference Include="Serilog" Version="2.11.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
 		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.0" />
-		<PackageReference Include="Svg.Skia" Version="0.5.14" />
+		<PackageReference Include="Svg.Skia" Version="0.5.16" />
 		<PackageReference Include="VPKSoft.ApplicationSettingsJson" Version="1.0.0" />
 		<PackageReference Include="VPKSoft.RandomizationUtils" Version="1.0.1" />
 		<PackageReference Include="z440.atl.core" Version="4.9.0" />
