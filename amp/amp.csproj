@@ -313,7 +313,7 @@
     <PackageReference Include="NAudio.Flac.Unknown" Version="1.0.2" />
     <PackageReference Include="NAudio.Vorbis" Version="1.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NVorbis" Version="0.10.4" />
+    <PackageReference Include="NVorbis" Version="0.10.5" />
     <PackageReference Include="ReaLTaiizor" Version="3.7.8.8" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
     <PackageReference Include="RpcSelf" Version="1.0.1" />
