@@ -1,7 +1,7 @@
 # amp#
 A music player for common audio formats with a simple and intuitive GUI.
 
-**SEE**: A multi-platform version is currently under development, which is under development can be found at: [amp-multi](https://github.com/VPKSoft/amp-multi).
+**SEE**: A multi-platform version is currently under development, which can be found at: [amp-multi](https://github.com/VPKSoft/amp-multi).
 
 ## Screenshots
 *White theme*
