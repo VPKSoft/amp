@@ -317,7 +317,7 @@
     <PackageReference Include="ReaLTaiizor" Version="3.7.9.3" />
     <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
     <PackageReference Include="RpcSelf" Version="1.0.1" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.117" />
+    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />
     <PackageReference Include="System.Memory" Version="4.5.5" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
     <PackageReference Include="taglib-sharp-netstandard2.0" Version="2.1.0" />
