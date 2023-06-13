@@ -307,7 +307,7 @@
   <ItemGroup>
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Microsoft-WindowsAPICodePack-Core" Version="1.1.5" />
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.4" />
+    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
     <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="NAudio.Flac.Unknown" Version="1.0.2" />
